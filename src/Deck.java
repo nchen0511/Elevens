@@ -4,7 +4,7 @@ public class Deck {
     private ArrayList<Card> unDealt = new ArrayList<>();
     private ArrayList<Card> Dealt = new ArrayList<>();
 
-    public Deck(String[] suit, String[] rank, int[] pointValue){
+    public Deck(String[] rank, String[] suit, int[] pointValue){
         for(int i=0;i<suit.length;i++){
             for(int k=0;k<rank.length;k++) {
                 Card temp = new Card(rank[k], suit[i], pointValue[k]);
