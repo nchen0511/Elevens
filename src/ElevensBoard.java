@@ -66,7 +66,7 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean anotherPlayIsPossible() {
-        return isLegal(cardIndexes());
+        return (containsPairSum11Whole(cardIndexes()) || containsJQK(cardIndexes()));
     }
 
     /**
@@ -77,20 +77,30 @@ public class ElevensBoard extends Board {
      * @return true if the board entries in selectedCards
      *              contain an 11-pair; false otherwise.
      */
-    private boolean containsPairSum11(List<Integer> selectedCards) {
-        int sum = 0;
-        for(int i=0;i<selectedCards.size();i++)
+    private boolean containsPairSum11Whole(List<Integer> selectedCards) {
+        for(int i=0;i<selectedCards.size()-1;i++)
         {
-            if(selectedCards.size() != 2)
-            {
-                break;
-            }
-            else{
-                sum += cardAt(selectedCards.get(i)).getPointValue();
-
+            for(int j=i+1;j<selectedCards.size();j++){
+                if(cardAt(selectedCards.get(i)).getPointValue()+cardAt(selectedCards.get(j)).getPointValue()==11){
+                    return true;
+                }
             }
         }
-        return (sum == 11);
+        return false;
+    }
+
+    private boolean containsPairSum11(List<Integer> selectedCards) {
+        for(int i=0;i<selectedCards.size()-1;i++)
+        {
+            for(int j=i+1;j<selectedCards.size();j++){
+                if(cardAt(selectedCards.get(i)).getPointValue()+cardAt(selectedCards.get(j)).getPointValue()==11){
+                    if(selectedCards.size()==2) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
