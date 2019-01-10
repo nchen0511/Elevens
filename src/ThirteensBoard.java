@@ -1,15 +1,11 @@
 import java.util.List;
-import java.util.ArrayList;
 
-/**
- * The ElevensBoard class represents the board in a game of Elevens.
- */
-public class ElevensBoard extends Board {
+public class ThirteensBoard extends Board {
 
     /**
      * The size (number of cards) on the board.
      */
-    private static final int BOARD_SIZE = 9;
+    private static final int BOARD_SIZE = 10;
 
     /**
      * The ranks of the cards for this game to be sent to the deck.
@@ -27,7 +23,7 @@ public class ElevensBoard extends Board {
      * The values of the cards for this game to be sent to the deck.
      */
     private static final int[] POINT_VALUES =
-            {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0};
+            {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 
     /**
      * Flag used to control debugging print statements.
@@ -38,7 +34,7 @@ public class ElevensBoard extends Board {
     /**
      * Creates a new <code>ElevensBoard</code> instance.
      */
-    public ElevensBoard() {
+    public ThirteensBoard() {
         super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
     }
 
@@ -81,7 +77,7 @@ public class ElevensBoard extends Board {
         for(int i=0;i<selectedCards.size()-1;i++)
         {
             for(int j=i+1;j<selectedCards.size();j++){
-                if(cardAt(selectedCards.get(i)).getPointValue()+cardAt(selectedCards.get(j)).getPointValue()==11){
+                if(cardAt(selectedCards.get(i)).getPointValue()+cardAt(selectedCards.get(j)).getPointValue()==13){
                     return true;
                 }
             }
@@ -93,8 +89,8 @@ public class ElevensBoard extends Board {
         for(int i=0;i<selectedCards.size()-1;i++)
         {
             for(int j=i+1;j<selectedCards.size();j++){
-                if(cardAt(selectedCards.get(i)).getPointValue()+cardAt(selectedCards.get(j)).getPointValue()==11){
-                    if(selectedCards.size()==2) {
+                if(cardAt(selectedCards.get(i)).getPointValue()+cardAt(selectedCards.get(j)).getPointValue()==13){
+                    if(selectedCards.size()==2){
                         return true;
                     }
                 }
@@ -112,50 +108,34 @@ public class ElevensBoard extends Board {
      *              include a jack, a queen, and a king; false otherwise.
      */
     private boolean containsJQK(List<Integer> selectedCards) {
-        boolean j = false;
-        boolean q = false;
+
         boolean k = false;
         for(int i = 0;i<selectedCards.size();i++)
         {
-            if(cardAt(selectedCards.get(i)).getRank().contains("jack"))
-            {
-                j = true;
-            }
-            if(cardAt(selectedCards.get(i)).getRank().contains("queen"))
-            {
-                q = true;
-            }
+
             if(cardAt(selectedCards.get(i)).getRank().contains("king"))
             {
                 k = true;
             }
         }
-        if(j && q && k && selectedCards.size()==3)
+        if(k && selectedCards.size()==1)
         {
             return true;
         }
         return false;
     }
     private boolean containsJQKWhole(List<Integer> selectedCards) {
-        boolean j = false;
-        boolean q = false;
+
         boolean k = false;
         for(int i = 0;i<selectedCards.size();i++)
         {
-            if(cardAt(selectedCards.get(i)).getRank().contains("jack"))
-            {
-                j = true;
-            }
-            if(cardAt(selectedCards.get(i)).getRank().contains("queen"))
-            {
-                q = true;
-            }
+
             if(cardAt(selectedCards.get(i)).getRank().contains("king"))
             {
                 k = true;
             }
         }
-        if(j && q && k )
+        if(k)
         {
             return true;
         }

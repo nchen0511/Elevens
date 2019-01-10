@@ -223,7 +223,7 @@ class CardGameGUI extends JFrame implements ActionListener {
         lossMsg.setBounds(LABEL_LEFT, LABEL_TOP + LABEL_HEIGHT_INC, 200, 30);
         lossMsg.setFont(new Font("SanSerif", Font.BOLD, 25));
         lossMsg.setForeground(Color.RED);
-        lossMsg.setText("Sorry, you lose.");
+        lossMsg.setText("LUL garbo, you lose.");
         panel.add(lossMsg);
         lossMsg.setVisible(false);
 
